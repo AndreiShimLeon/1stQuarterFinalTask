@@ -36,9 +36,18 @@ bool ElementIsBig (string element, int length)
     else return false;
 }
 
+int CountingSpecificLengthElements(string [] array, length)
+{
+    int count = 0;
+    for (int i = 0; i < length; i++)
+        if(ElementIsBig(array[i], length)) count++;
+
+    return count;
+}
+
 // string[] RemoveBigElements(string [] array)
 // {
-        // TODO
+//     string [] newArray = new string[]
 // }
 
 int length = ReadInt("Enter array size: ");
