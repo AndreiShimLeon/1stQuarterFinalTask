@@ -21,12 +21,14 @@ string[] ReadStringArray(int length)
     return array;
 }
 
-void PrintStrArray (string[] array)
+void PrintStrArray (string[] array, string text)
 {
+    Console.WriteLine(text);
     for (int i = 0; i < array.Length; i++)
     {
         Console.Write($"'{array[i]}' ");
     }
+    Console.WriteLine();
 }
 
 bool ElementIsBig (string element, int length)
@@ -36,20 +38,32 @@ bool ElementIsBig (string element, int length)
     else return false;
 }
 
-int CountingSpecificLengthElements(string [] array, length)
+int CountingSpecificLengthElements(string [] array, int length)
 {
     int count = 0;
-    for (int i = 0; i < length; i++)
-        if(ElementIsBig(array[i], length)) count++;
-
+    for (int i = 0; i < array.Length; i++)
+        if(!ElementIsBig(array[i], length)) count++;
     return count;
 }
 
-// string[] RemoveBigElements(string [] array)
-// {
-//     string [] newArray = new string[]
-// }
+string[] RemoveBigElements(string [] array, int cutOffLength)
+{
+    string [] newArray = new string[CountingSpecificLengthElements(array, cutOffLength)];
+    int count = 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (!ElementIsBig(array[i], cutOffLength))
+        {
+            newArray[count] = array[i];
+            count++;
+        }
+    }
+    return newArray;
+}
 
 int length = ReadInt("Enter array size: ");
 string[] originalArray = ReadStringArray(length);
-PrintStrArray(originalArray);
+PrintStrArray(originalArray, "Created array: ");
+int cutOff = ReadInt("Enter the cut-off length for elements of the array: ");
+string[] modifiedArray = RemoveBigElements(originalArray, cutOff);
+PrintStrArray(modifiedArray, $"Modified array without elements longer than {cutOff}: ");
