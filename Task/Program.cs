@@ -29,4 +29,18 @@ void PrintStrArray (string[] array)
     }
 }
 
+bool ElementIsBig (string element, int length)
+{
+    if (element.Length > length)
+        return true;
+    else return false;
+}
+
+// string[] RemoveBigElements(string [] array)
+// {
+        // TODO
+// }
+
 int length = ReadInt("Enter array size: ");
+string[] originalArray = ReadStringArray(length);
+PrintStrArray(originalArray);
